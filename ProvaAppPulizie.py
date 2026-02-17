@@ -5,9 +5,9 @@ import csv
 from datetime import date, timedelta
 
 # Percorso del file CSV
-DATA_PATH = r"C:\Users\SandroCantasanoMarti\Desktop\pulizie2.csv"
+DATA_PATH = r"C:\DevOps\CleansingAPP\AppPulizie\pulizie2.csv"
 
-
+    
 
 # 🔹 Funzione per creare un CSV valido
 def crea_csv_iniziale():
