@@ -15,12 +15,12 @@ def crea_csv_iniziale():
         writer = csv.writer(f)
         writer.writerow(["settimana", "area", "responsabile", "stato"])
         writer.writerows([
-            ["2025-10-17", "Polvere", "Carlottina", "Da fare"],
-            ["2025-10-17", "Cucina", "Marta", "Da fare"],
-            ["2025-10-17", "Pavimenti", "Daria", "Da fare"],
-            ["2025-10-17", "Bagno", "Sandro", "Da fare"]
+            ["2026-02-21", "Bagno picc. + polvere", "Carlottina", "Da fare"],
+            ["2026-02-21", "Cucina", "Sandro", "Fatto"],
+            ["2026-02-21", "Pavimenti", "Marta", "Fatto"],
+            ["2026-02-21", "Bagno grande", "Daria", "Da fare"]
         ])
-    st.info("📄 File 'pulizie.csv' creato o ripristinato con dati iniziali.")
+    #st.info("📄 File 'pulizie.csv' creato o ripristinato con dati iniziali.")
 
 # 🔹 Se il file non esiste, crealo
 if not os.path.exists(DATA_PATH):
