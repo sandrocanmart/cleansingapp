@@ -65,7 +65,7 @@ def logout():
 # ------------------------
 # APP PROTETTA
 # ------------------------
-if not st.session_state.authenticated:s
+if not st.session_state.authenticated:
     login()
 else:
     st.sidebar.write(f"Ciao {st.session_state.username}")
@@ -74,5 +74,7 @@ else:
 
     st.title("App Pulizie")
     st.write("Benvenuto nell'app!")
+
+
 
 
