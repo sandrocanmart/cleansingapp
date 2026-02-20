@@ -20,7 +20,7 @@ def crea_csv_iniziale():
             ["2025-10-17", "Pavimenti", "Daria", "Da fare"],
             ["2025-10-17", "Bagno", "Sandro", "Da fare"]
         ])
-    st.info("📄 File 'pulizie.csv' creato o ripristinato con dati iniziali.")
+    # st.info("📄 File 'pulizie.csv' creato o ripristinato con dati iniziali.")
 
 #Se il file non esiste, crealo
 if not os.path.exists(DATA_PATH):
