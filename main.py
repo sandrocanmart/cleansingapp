@@ -34,7 +34,7 @@ df = auto_ruota_e_scrivi_settimana_corrente(df)
 # UI / GRAFICA STREAMLIT
 # ==========================
 st.set_page_config(page_title="Pulizie Casa", page_icon="🧹", layout="centered")
-st.title("🧹 Gestione Pulizie Casa")
+st.title("🧹 Gestione Pulizie Casa Lanfranchi")
 
 oggi = date.today()
 lunedi_corrente = lunedi_settimana_corrente(oggi)
