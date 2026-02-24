@@ -33,7 +33,8 @@ df = auto_ruota_e_scrivi_settimana_corrente(df)
 # ==========================
 # UI / GRAFICA STREAMLIT
 # ==========================
-st.set_page_config(page_title="Pulizie Casa", page_icon="🧹", layout="centered")
+st.caption("DEPLOY MARK: 2026-02-24")
+st.set_page_config(page_title="Casa Lanfranchi", page_icon="🧹", layout="centered")
 st.title("🧹 Gestione Pulizie Casa Lanfranchi")
 
 oggi = date.today()
