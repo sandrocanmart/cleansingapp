@@ -72,3 +72,19 @@ else:
 if st.button("💾 Salva modifiche"):
     salva_csv(df)
     st.success("Stato aggiornato!")
+
+
+
+# st.write("DATA_PATH:", DATA_PATH)
+# st.write("Exists:", os.path.exists(DATA_PATH))
+
+# st.write("Oggi:", date.today())
+# lun_corr = lunedi_settimana_corrente(date.today())
+# st.write("Lunedì corrente:", lun_corr)
+
+# st.write("DF shape:", df.shape)
+# st.write("DF head:", df.head())
+
+# st.write("Settimane uniche (prime 30):", sorted(df["settimana"].dropna().unique())[:30])
+# st.write("Match lunedì corrente?:", (df["settimana"] == lun_corr).any())
+# st.write("NaN settimane:", df["settimana"].isna().sum())
