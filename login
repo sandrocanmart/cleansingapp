@@ -3,11 +3,9 @@ import pandas as pd
 import os
 import csv
 from datetime import date, timedelta
-
-# Percorso del file CSV
-DATA_PATH = r"C:\DevOps\CleansingAPP\AppPulizie\pulizie2.csv"
-
-
+from utilities import *
+from config import *
+from rotation import *
 import streamlit as st
 import hashlib
 
