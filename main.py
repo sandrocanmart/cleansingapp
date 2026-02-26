@@ -1,5 +1,5 @@
-import streamlit as st
 from datetime import date, timedelta
+import streamlit as st
 from utilities import *
 from config import *
 from rotation import *
@@ -19,7 +19,7 @@ def main():
         df = leggi_csv()
 
     # Auto-rotazione: se manca la settimana corrente, la crea e salva
-    df = auto_ruota_e_scrivi_settimana_corrente(df)
+    #df = auto_ruota_e_scrivi_settimana_corrente(df)
 
     # ==========================
     # UI / GRAFICA STREAMLIT
@@ -45,7 +45,8 @@ def main():
         df_settimana = df[df["settimana"] == lunedi_corrente].copy()
 
         if df_settimana.empty:
-            st.info("Nessuna pulizia pianificata per la settimana corrente nel CSV.")
+            st.info("Nessuna pulizia pianificata per la settimana corrente nel CSV.")       
+
         else:
             for idx, row in df_settimana.iterrows():
                 st.markdown(f"### 🏠 {row['area']}")
@@ -75,11 +76,11 @@ def main():
         # (meglio di print: lo vedi nell'app)
         #st.caption(f"__name__ = {__name__}")
     with tab2:
-        st.header("🧺 Gestione Lavatrici")
+        st.header("📅 Gestione Lavatrici")
         st.caption("DEPLOY MARK: 2026-02-26")
 
     with tab3:
-        st.header("Acquisti per la casa")
+        st.header("🧺 Acquisti per la casa")
         st.caption("DEPLOY MARK: 2026-02-26")
 
     with tab4:

@@ -1,14 +1,14 @@
-import streamlit as st
-import pandas as pd
+from datetime import date, timedelta
 import os
 import csv
-from datetime import date, timedelta
+import pandas as pd
 from config import *
 from utilities import *
 
 def lunedi_settimana_corrente(d: date) -> date:
-    return d - timedelta(days=d.weekday())
+    """Data del lunedì della settimana di una data d."""
 
+    return d - timedelta(days=d.weekday())
 
 # --------------------------
 # Rotazione automatica
