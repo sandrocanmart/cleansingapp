@@ -1,7 +1,4 @@
 import streamlit as st
-import pandas as pd
-import os
-import csv
 from datetime import date, timedelta
 from utilities import *
 from config import *
@@ -17,7 +14,7 @@ def main():
 
     try:
         df = leggi_csv()
-    except Exception:
+    except FileNotFoundError:
         crea_csv_vuoto()
         df = leggi_csv()
 
@@ -27,52 +24,67 @@ def main():
     # ==========================
     # UI / GRAFICA STREAMLIT
     # ==========================
-    st.caption("DEPLOY MARK: 2026-02-24")
-    st.set_page_config(page_title="Casa Lanfranchi", page_icon="🧹", layout="centered")
-    st.title("🧹 Gestione Pulizie Casa Lanfranchi")
 
-    oggi = date.today()
-    lunedi_corrente = lunedi_settimana_corrente(oggi)
-    domenica_corrente = lunedi_corrente + timedelta(days=6)
+    tab1, tab2, tab3, tab4 = st.tabs(["Pianificazione Pulizie", "Gestione Lavatrici", "Acquisti per la casa", "Splitwise"])
 
-    st.subheader(
-        f"Settimana corrente: {lunedi_corrente.isoformat()} → {domenica_corrente.isoformat()}"
-    )
+    with tab1:
+        #st.header("📅 Pianificazione Pulizie")
+        st.caption("DEPLOY MARK: 2026-02-24")
+        st.set_page_config(page_title="Casa Lanfranchi", page_icon="🧹", layout="centered")
+        st.title("🧹 Gestione Pulizie Casa Lanfranchi")
 
-    # Filtra SOLO settimana corrente
-    df_settimana = df[df["settimana"] == lunedi_corrente].copy()
+        oggi = date.today()
+        lunedi_corrente = lunedi_settimana_corrente(oggi)
+        domenica_corrente = lunedi_corrente + timedelta(days=6)
 
-    if df_settimana.empty:
-        st.info("Nessuna pulizia pianificata per la settimana corrente nel CSV.")
-    else:
-        for idx, row in df_settimana.iterrows():
-            st.markdown(f"### 🏠 {row['area']}")
-            st.write(f"👤 {row['responsabile']}")
+        st.subheader(
+            f"Settimana corrente: {lunedi_corrente.isoformat()} → {domenica_corrente.isoformat()}"
+        )
 
-            checkbox_key = f"done_{idx}_{row['area']}_{row['responsabile']}"
+        # Filtra SOLO settimana corrente
+        df_settimana = df[df["settimana"] == lunedi_corrente].copy()
 
-            fatto = st.checkbox(
-                "Segna come fatto",
-                value=(str(row["stato"]).strip().lower() == "fatto"),
-                key=checkbox_key
-            )
+        if df_settimana.empty:
+            st.info("Nessuna pulizia pianificata per la settimana corrente nel CSV.")
+        else:
+            for idx, row in df_settimana.iterrows():
+                st.markdown(f"### 🏠 {row['area']}")
+                st.write(f"👤 {row['responsabile']}")
 
-            # Aggiorna il DF principale usando l'indice originale
-            if fatto:
-                df.at[idx, "stato"] = "Fatto"
-            else:
-                if str(df.at[idx, "stato"]).strip().lower() == "fatto":
-                    df.at[idx, "stato"] = "Da fare"
+                checkbox_key = f"done_{idx}_{row['area']}_{row['responsabile']}"
 
-    # Salva eventuali modifiche
-    if st.button("💾 Salva modifiche"):
-        salva_csv(df)
-        st.success("Stato aggiornato!")
+                fatto = st.checkbox(
+                    "Segna come fatto",
+                    value=(str(row["stato"]).strip().lower() == "fatto"),
+                    key=checkbox_key
+                )
 
-    # Se vuoi vedere il modulo corrente nei log di Streamlit:
-    # (meglio di print: lo vedi nell'app)
-    #st.caption(f"__name__ = {__name__}")
+                # Aggiorna il DF principale usando l'indice originale
+                if fatto:
+                    df.at[idx, "stato"] = "Fatto"
+                else:
+                    if str(df.at[idx, "stato"]).strip().lower() == "fatto":
+                        df.at[idx, "stato"] = "Da fare"
 
+        # Salva eventuali modifiche
+        if st.button("💾 Salva modifiche"):
+            salva_csv(df)
+            st.success("Stato aggiornato!")
+
+        # Se vuoi vedere il modulo corrente nei log di Streamlit:
+        # (meglio di print: lo vedi nell'app)
+        #st.caption(f"__name__ = {__name__}")
+    with tab2:
+        st.header("🧺 Gestione Lavatrici")
+        st.caption("DEPLOY MARK: 2026-02-26")
+
+    with tab3:
+        st.header("Acquisti per la casa")
+        st.caption("DEPLOY MARK: 2026-02-26")
+
+    with tab4:
+        st.header("Splitwise")
+        st.caption("DEPLOY MARK: 2026-02-26")
 
 if __name__ == "__main__":
     main()
