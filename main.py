@@ -18,9 +18,6 @@ def main():
         crea_csv_vuoto()
         df = leggi_csv()
 
-    # Auto-rotazione: se manca la settimana corrente, la crea e salva
-    #df = auto_ruota_e_scrivi_settimana_corrente(df)
-
     # ==========================
     # UI / GRAFICA STREAMLIT
     # ==========================
