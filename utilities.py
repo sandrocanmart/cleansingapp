@@ -1,14 +1,13 @@
-import streamlit as st
-import pandas as pd
+from datetime import date, timedelta
 import os
 import csv
-from datetime import date, timedelta
+import pandas as pd
+import streamlit as st
 from config import *
-from rotation import *
 
 
 
-def crea_csv_vuoto():
+def crea_csv_vuoto() -> None:
     with open(DATA_PATH, "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         writer.writerow(COLONNE_ATTESE)
@@ -32,7 +31,7 @@ def leggi_csv() -> pd.DataFrame:
 
 def salva_csv(df: pd.DataFrame):
     df_to_save = df.copy()
-    df_to_save["settimana"] = df_to_save["settimana"].astype(str)
+    df_to_save["settimana"] = pd.to_datetime(df["settimana"], errors="coerce").dt.date
     df_to_save.to_csv(DATA_PATH, index=False, encoding="utf-8")
 
 
